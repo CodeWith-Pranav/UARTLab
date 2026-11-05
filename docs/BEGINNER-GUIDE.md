@@ -4,7 +4,7 @@
 
 UART is a circuit that turns a byte into a timed sequence of bits, and converts incoming bits back to a byte. It connects processors, sensors and modules. This project describes that digital circuit in SystemVerilog. Simulation runs the description on your laptop. It does not need a sensor, Arduino, FPGA, or physical wires.
 
-This is a core digital-design project. It has no web frontend/backend or AI model. RTL is the circuit description. A testbench acts as the external world: it supplies clocks and bytes, then checks results. VCD is a file recording how signal values changed with simulated time. GTKWave opens that file.
+This is a core digital-design project. The RTL needs no web backend or AI model. The included website is a JavaScript teaching demo; it does not run the Verilog circuit. RTL is the circuit description. A testbench acts as the external world: it supplies clocks and bytes, then checks results. VCD is a file recording how signal values changed with simulated time. GTKWave opens that file.
 
 ## Learn these concepts first
 

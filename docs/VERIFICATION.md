@@ -32,3 +32,12 @@ The tests do not prove every possible input sequence, noise pattern, drift, phas
 These describe general UART behavior; this project implements only the subset specified in SPEC.md. No vendor RTL was copied.
 
 The repository stores VCDs losslessly compressed as .vcd.gz. Run make test to regenerate raw waveforms or node tools/build-site.mjs to decompress the recorded evidence into public/downloads. The browser explorer is a separately labeled JavaScript teaching model; its automated checks cover all 256 frame encodings, invalid inputs, the 50 MHz/115200 divider, and FIFO boundary behavior.
+
+## Publication verification
+
+Public source: https://github.com/CodeWith-Pranav/UARTLab
+Live demo: https://uartlab.vercel.app/
+
+GitHub Actions run 41962964919 completed successfully on commit 4a069c0 (the source-cleanup checkpoint). It ran the browser-model checks and actual RTL simulations with a read-only repository token. Final documentation edits cause an additional normal CI run, visible in Actions.
+
+The public demo was checked for invalid hexadecimal input, byte 0x0F decoding and stepping, full-FIFO rejection, simultaneous full-FIFO replacement, and a completed 3,904,181-byte VCD download. Source files at the publication checkpoint matched the local project byte for byte. No dedicated mobile viewport, accessibility or load audit was performed.
