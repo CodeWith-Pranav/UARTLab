@@ -1,0 +1,24 @@
+mkdir -p build results
+/tmp/uart-tools/usr/bin/iverilog -B /tmp/uart-tools/usr/lib/x86_64-linux-gnu/ivl -g2012 -Wall -s tb_fifo -o build/fifo rtl/sync_fifo.sv rtl/uart_tx.sv rtl/uart_rx.sv rtl/uart_core.sv tb/tb_fifo.sv
+/tmp/uart-tools/usr/bin/vvp build/fifo
+PASS FIFO: 6000 seeded cycles, non-power-of-two depth, boundary replacement, reset
+/tmp/uart-tools/usr/bin/iverilog -B /tmp/uart-tools/usr/lib/x86_64-linux-gnu/ivl -g2012 -Wall -s tb_uart -o build/uart rtl/sync_fifo.sv rtl/uart_tx.sv rtl/uart_rx.sv rtl/uart_core.sv tb/tb_uart.sv
+/tmp/uart-tools/usr/bin/vvp build/uart
+VCD info: dumpfile results/uart-cpb32.vcd opened for output.
+PASS independent TX start/data/stop decoding
+PASS exhaustive loopback: all 256 bytes
+PASS independent RX and tested baud offsets
+PASS false start, bad stop, sticky clear, recovery
+PASS RX overflow drops newest, preserves queued bytes
+PASS ready/valid consumer stall
+PASS mid-frame reset, idle and flags; CPB=32
+/tmp/uart-tools/usr/bin/iverilog -B /tmp/uart-tools/usr/lib/x86_64-linux-gnu/ivl -g2012 -Wall -s tb_uart -Ptb_uart.CPB=8 -o build/uart8 rtl/sync_fifo.sv rtl/uart_tx.sv rtl/uart_rx.sv rtl/uart_core.sv tb/tb_uart.sv
+/tmp/uart-tools/usr/bin/vvp build/uart8
+VCD info: dumpfile results/uart-cpb8.vcd opened for output.
+PASS independent TX start/data/stop decoding
+PASS exhaustive loopback: all 256 bytes
+PASS independent RX and tested baud offsets
+PASS false start, bad stop, sticky clear, recovery
+PASS RX overflow drops newest, preserves queued bytes
+PASS ready/valid consumer stall
+PASS mid-frame reset, idle and flags; CPB=8
