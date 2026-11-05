@@ -1,0 +1,25 @@
+name: RTL simulation
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  simulate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Prepare source during initial upload
+        run: |
+          if [ ! -f Makefile ] && [ -f uartlab-source.zip ]; then
+            python3 -m zipfile -e uartlab-source.zip .
+          fi
+      - run: sudo apt-get update && sudo apt-get install -y iverilog
+      - run: node tools/test-site.mjs && node tools/build-site.mjs
+      - run: make test | tee results/test-log.txt
+        shell: bash --noprofile --norc -eo pipefail {0}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: simulation-evidence
+          path: results/
