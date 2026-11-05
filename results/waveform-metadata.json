@@ -1,0 +1,9 @@
+{
+  "source": "uart-cpb32.vcd",
+  "timescale": "1ps",
+  "first_start_ps": 115000,
+  "clock_period_ps": 10000,
+  "clocks_per_bit": 32,
+  "byte": "0xA5",
+  "frame": "start, 1,0,1,0,0,1,0,1, stop"
+}
