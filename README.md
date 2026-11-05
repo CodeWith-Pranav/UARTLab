@@ -85,3 +85,11 @@ The `public/` folder contains a responsive teaching demo: an interactive 8N1 fra
 Run `node tools/test-site.mjs` to check the teaching model. Run `node tools/build-site.mjs` to decompress the checked-in VCD evidence into the download folder, then serve `public/` with `python3 -m http.server 8080 --directory public`. Vercel runs the preparation script automatically. There are no package dependencies or secrets.
 
 The checked-in VCDs are losslessly compressed as `results/*.vcd.gz`; `make test` regenerates raw VCDs for GTKWave. Future pushes trigger GitHub simulation checks and Vercel deployments independently; passing CI is not a Vercel promotion gate.
+
+## Updating evidence after RTL changes
+
+Run `make test` first. If it passes, regenerate the compressed recorded waveforms with `gzip -n -c results/uart-cpb32.vcd > results/uart-cpb32.vcd.gz` and the equivalent command for cpb8. Regenerate the plot with `python3 tools/plot_waveform.py`. Commit the changed RTL, test cases, compressed evidence, plot and updated verification record together. Vercel serves those recorded snapshots; browser clicks do not invoke Icarus.
+
+## License
+
+MIT; see LICENSE. Icarus, GTKWave and matplotlib are separate tools with their own licenses and are not bundled with the project.

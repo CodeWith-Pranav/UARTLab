@@ -10,3 +10,5 @@ Local evidence: 6,000 seeded FIFO cycles and seven UART scenario groups at each 
 Scope: simulation-only, no FPGA synthesis, timing closure or hardware measurements. The browser explorer is a teaching model; downloadable VCDs are real Icarus output. Future main pushes run CI and deploy on Vercel independently; CI is not a deployment gate.
 
 See docs/VERIFICATION.md for test limits. Resume from this checkpoint; preserve completed RTL and recorded evidence. The initial source archive in history was a publication staging step, not artificial development history.
+
+Publication checks completed: public Vercel page opened successfully, interactive frame and FIFO cases passed, actual waveform download completed, and GitHub Actions run 41962964919 passed (4a069c0 checkpoint). The temporary source archive was removed from main after normal source-file publication. Final documentation and license changes are followed by normal automated CI and deployment.
